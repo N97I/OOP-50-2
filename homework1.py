@@ -79,7 +79,6 @@ class Hero2:
         else:
             return False
 
-
 class ShiledHero2(Hero2):
     pass
 
