@@ -1,6 +1,6 @@
 команды на один раз в проекте
 git init | Команда для создания скрытого файла .git
-git remote add origin https://github.com/N97I/OOP-51-2.git | для привязки проекта к репе
+git remote add origin https://github.com/N97I/OOP-50-2.git | для привязки проекта к репе
 
 Команды на один раз для устройства ПК\Ноут
 git config --global user.name "N97I"
