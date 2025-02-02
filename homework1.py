@@ -83,7 +83,7 @@ class ShiledHero2(Hero2):
     pass
 
 # Класс OBJECT - экземпляр класс
-hobs = ShiledHero2('Hobs', 0, 12)
+nobs = ShiledHero2('Hobs', 0, 12)
 
-hobs.introduce()
-print(hobs.is_adults_2())
+nobs.introduce()
+print(nobs.is_adults_2())
