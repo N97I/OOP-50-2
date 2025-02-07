@@ -37,7 +37,7 @@ class Archer(Heroes):
 
 # Тестирование кода
 if __name__ == "__main__":
-    archer = Archer("deadpool", 50, 3, 0.5)
+    archer = Archer("joker", 50, 3, 0.5)
 
     # Проверяем методы
     print(archer.status())
