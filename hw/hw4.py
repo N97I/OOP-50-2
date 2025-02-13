@@ -1,29 +1,35 @@
-# импортируем библиотеку requests
+def logger(n=1):
 
-# Пример из библиотеки requests:
-    # requests - это библиотека для отправки HTTP-запросов в Python.
-    # В этом примере мы отправляем POST-запрос с данными в формате JSON на сервис httpbin.org,
-    # который возвращает эти данные обратно, чтобы мы могли увидеть, как это работает.
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for i in range(n):
+                func(*args, **kwargs)
+        return wrapper
 
-import requests
-import json
+    return decorator
 
-    # Данные для отправки
+@logger()
+def greet(name):
+    print(f'Привет, {name}!')
 
-data = {
-    'name': 'Hobs',
-    'age': 25,
-    'country': 'Canada'
-}
+greet('Алиса')
 
-    # Отправляем POST-запрос на сервер httpbin с данными
-response = requests.post('https://httpbin.org/post', json=data)
 
-    # Если запрос успешен (код состояния 200), выводим данные
-if response.status_code == 200:
-        print("Запрос успешен!")
-        # Выводим ответ в формате JSON
-        json_data = response.json()  # Преобразуем ответ в формат JSON
-        print(json.dumps(json_data, indent=4))  # Преобразуем в красивый формат с отступами
-else:
-        print("Ошибка запроса! Код состояния:", response.status_code)
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def __str__(self,):
+        return f'Прямоугольник {self.width}x{self.height}'
+
+    def __add__(self, other):
+        return f'Прямоугольник {self.width + other.width}x{self.height + other.height}'
+
+rect1 = Rectangle(3,4)
+rect2 = Rectangle(2,5)
+rect3 = rect1 + rect2
+
+print(rect1)
+print(rect2)
+print(rect3)
