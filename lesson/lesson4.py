@@ -20,7 +20,7 @@ def hello():
     print("Привет мир!!")
 
 
-hello()  # 1
+# hello() # 1
 
 
 # Декораторы с аргументами
@@ -42,43 +42,55 @@ def greet():
     print("Привет!!")
 
 
-greet()  # step 1
+# greet() # step 1
 
+
+# Декораторы для классов
+# MyClass
 def class_decorator(cls):
-
+    # MyClass
     class NewClass(cls):
 
         def new_method(self):
-            return print('Новый Метод')
+            return print("Новый метод!!!")
 
     return NewClass
 
+
+# class_decorator
 
 @class_decorator
 class MyClass:
 
     def old_method(self):
-        return print('Старый метод')
+        return print("Старый метод")
 
-obj = MyClass()
-obj.old_method()
-obj.new_method()
+
+# obj = MyClass() # NewClass()
+# obj.old_method()
+# obj.new_method()
 
 
 class Person:
 
-
+    # Конструктор | Магический метод
     def __init__(self, name, age):
         self.name = name
         self.age = age
 
+    def __str__(self, ):
+        return f"бла бла бла"
 
-    def __str__(self,):
-        return f'bla bla bla'
 
-# obj = Person('Pavel', 25)
+# obj = Person("Павел", 25)
 
 # print(obj)
+
+
+# 2. Магические методы
+# Магические методы (или dunder-методы, от double underscore) — это методы, которые
+# начинаются и заканчиваются двумя подчеркиваниями (__init__, __str__, __add__ и др.).
+# Они позволяют переопределять стандартное поведение объектов.
 
 class Money:
 
@@ -86,33 +98,49 @@ class Money:
         self.amount = amount
 
     def __add__(self, other):
-        print(f'{self.amount}------{other.amount}')
-        return f'bla'
+        print(f"{self.amount}------{other.amount}")
+        return f'бла '
 
-    def __str__(self,):
-        return f'{self.amount} som'
+    def __str__(self, ):
+        return f"{self.amount} som"
 
     def __len__(self):
-        return f'pass'
+        return f"pass"
+
 
 m1 = Money(100)
-m2 = Money(200)
-m3 = m1 + m2
+m2 = Money(400)
+# m2.__add__(other=m1)
+m3 = m2 + m1
 len(m3)
 
 
+# 1. Декоратор @staticmethod
+# Описание:
+# Декоратор @staticmethod используется для того, чтобы определить метод, который не зависит от экземпляра класса
+# (не использует self) и не зависит от самого класса (не использует cls). Такой метод можно вызывать без создания
+# экземпляра класса.
+
 class Math:
 
-    def add(self, a, b):
+    @staticmethod
+    def add(a, b):
         return a + b
 
-obj3 = Math()
 
-print(obj3.add(1,2))
+# print(Math.add(1,2))
+
+
+# 2. Декоратор @classmethod
+# Описание:
+# Декоратор @classmethod используется для определения метода, который принимает первым аргументом
+# сам класс (не экземпляр). Этот аргумент обычно называется cls. Метод класса может изменять состояние класса,
+#  но не работает с состоянием конкретного экземпляра.
 
 
 class Person:
     count = 0
+    password = "Def"
 
     def __init__(self, name):
         self.name = name
@@ -122,13 +150,22 @@ class Person:
     def get_population(cls):
         return cls.count
 
-    @classmethod
+    def test(self, ):
+        pass
+
+    @staticmethod
+    def static_method():
+        pass
+
+    @classmethod  # Person
     def create_person(cls, name):
         return cls(name)
+        # Person(John)
 
-person1 = Person('Alice')
-person2 = Person('Bob')
-person3 = Person('Bobs')
+
+person1 = Person("Alice")
+person2 = Person("Bob")
+person3 = Person("Bobs")
 print(Person.get_population())
-person4 = Person.create_person('John')
+person4 = Person.create_person("jonh")
 print(person4.name)
