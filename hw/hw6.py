@@ -44,21 +44,15 @@ def get_all_users():
         print(f"NAME: {i[0]}, AGE {i[1]}, HOBBY: {i[2]}")
 
 
-def get_users_by_name(name):
-    connect = sqlite3.connect('User.db')
-    cursor = connect.cursor()
+def get_user_by_name(name):
     cursor.execute('SELECT * FROM users WHERE name = ?', (name,))
-    users = cursor.fetchone()
-    connect.close()
-
-    if users:
-        return f"NAME: {users[0]}, AGE {users[1]}, HOBBY: {users[2]}"
-    else:
-        return 'Пользователь не найден!'
+    user = cursor.fetchone()
+    print(user)
 
 
-# get_all_users()
-print(get_users_by_name('Mike'))
-print(get_users_by_name('Misha'))
+
+get_user_by_name('Mike')
+
+
 
 
