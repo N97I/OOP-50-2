@@ -53,10 +53,10 @@ def add_grades(user_id, subject, grade):
     print(f'Оценка добавлена для пользователя c ID {user_id}!!!')
 
 add_grades(4, "Алгебра",5)
-add_grades(4, "Алгебра",2)
-add_grades(4, "Алгебра",4)
-add_grades(4, "Алгебра",3)
-add_grades(4, "Алгебра",5)
+add_grades(2, "Химия",2)
+add_grades(1, "Физика",4)
+add_grades(3, "Геометрия",3)
+add_grades(5, "Русский",5)
 
 def get_users_with_grades():
     cursor.execute("""
@@ -69,3 +69,12 @@ def get_users_with_grades():
     for i in users:
         print(f'NAME: {i[0]}, SUBJECT: {i[1]}, GRADE: {i[2]}')
 
+def update_grade_by_id(new_grade, grade_id):
+    cursor.execute("""
+        UPDATE grades
+        SET grade = ?
+        WHERE grade_id = ?""",(new_grade, grade_id))
+    connect.commit()
+    print(f'Subject with ID {grade_id} updated!')
+
+update_grade_by_id(1,3)

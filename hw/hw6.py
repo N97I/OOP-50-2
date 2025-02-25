@@ -1,4 +1,5 @@
 import sqlite3
+from types import new_class
 
 # A4
 connect = sqlite3.connect('User.db')
@@ -53,6 +54,24 @@ def get_user_by_name(name):
 
 get_user_by_name('Mike')
 
+def update_user(new_name,row_id):
 
+    cursor.execute(
+        'UPDATE users SET name = ? WHERE rowid = ?',
+        (new_name,row_id)
+    )
+    connect.commit()
+    print('Users Updated!')
 
+update_user(row_id=3, new_name='Test')
 
+# Delete
+def delete_user(row_id):
+    cursor.execute(
+        'DELETE from users WHERE rowid = ?',
+        (row_id,)
+    )
+    connect.commit()
+    print('User Deleted!')
+
+delete_user(2)
